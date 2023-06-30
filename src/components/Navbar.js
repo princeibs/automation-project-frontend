@@ -1,26 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import {Link, useNavigate} from "react-router-dom"
-import { useCookies } from 'react-cookie'
-import {useGetUserId} from "../hooks/useGetUserId"
-import axios from 'axios'
 import { toast } from 'react-toastify'
 
-const Navbar = () => {
-  const [cookies, setCookies] = useCookies(["access_token"]);
-  const [userDetails, setUserDetails] = useState({})
+const Navbar = ({userDetails, userId, cookies, role, setCookies, setUserDetails}) => {
+
   const navigate = useNavigate()
-  const userId = useGetUserId()
-
-  const role = window.localStorage.getItem("role");
-
-  const getUserDetails = async () => {
-    try {
-      const res = role==1 ?  await axios.post("http://localhost:3001/staff/details", {id: userId}) : role==2 ? await axios.post("http://localhost:3001/auth/details", {id: userId}): ""
-      setUserDetails(res.data)
-    } catch (e) {
-      console.log(e)
-    }
-  }
 
   const logout = () => {
     setCookies("access_token", "");
@@ -30,12 +14,6 @@ const Navbar = () => {
     toast.success("Logout successful")
     navigate("/")
   }
-
-  useEffect(() => {
-    if (userId && cookies.access_token) {
-      getUserDetails();
-    }
-  }, [userId, cookies.access_token])
 
   return (
     <div className='flex items-center w-full px-[20px] py-[30px] mb-4 bg-primary-100'>
@@ -58,9 +36,8 @@ const Navbar = () => {
           </>
         )}
       </div>
-      {(cookies.access_token && userId && role == 1) && (<div className='border text-white mx-auto px-4 py-2 rounded-md bg-slate-700'>{userDetails.email} - {String(userDetails.firstName).toUpperCase()}</div>) }
-      {(cookies.access_token && userId && role == 2) && (<div className='border text-white mx-auto px-4 py-2 rounded-md bg-slate-700'>{userDetails.matricNo} - {String(userDetails.firstName).toUpperCase()}</div>) }
-      
+      {(cookies.access_token && userId && role == 1) && (<div className='border text-white mx-auto px-4 py-2 rounded-md bg-slate-700'>{userDetails?userDetails.email:""} - {userDetails?userDetails.firstName?.toString().toUpperCase():""}</div>)}
+      {(cookies.access_token && userId && role == 2) && (<div className='border text-white mx-auto px-4 py-2 rounded-md bg-slate-700'>{userDetails?userDetails.matricNo?.toString().toUpperCase():""} - {userDetails?userDetails.firstName?.toString().toUpperCase():""}</div>)}
     </div>
   )
 }

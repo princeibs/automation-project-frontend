@@ -5,12 +5,21 @@ import axios from 'axios';
 import { baseUrl} from '../config'
 import { useGetUserId } from '../hooks/useGetUserId';
 import { toast } from 'react-toastify';
+import Loader from '../components/Loader';
 
 const SavedTopics = () => {
   const [savedTopics, setSavedTopics] = useState([]);
   const [loading, setLoading] = useState(false)
 
   const userId = useGetUserId();
+
+  const copyTextToClipboard = async (text) => {
+    if ('clipboard' in navigator) {
+      await navigator.clipboard.writeText(text)
+    } else {
+      document.execCommand('copy', true, text);
+    }
+  }
 
   const getSaved = async () => {
     try {
@@ -52,31 +61,37 @@ const unSave = async (topicId) => {
         <div className='text-4xl mx-auto mb-[1rem] w-fit'>Saved Topics</div>
         <p className='mx-auto mb-[2rem] w-fit'>List of topics you have saved</p>
         <div className='m-auto w-fit flex gap-3 flex-col'>
-          {savedTopics.map(topic => (
-            <div className='border rounded p-4 w-[50rem]'>
-              <div className='flex justify-between mb-5 mt-2'>
-                <div className='text-xl '>{topic.title}</div>
-                <div className='flex items-center justify-between gap-3'>
-                  <StarIconFull onClick={() => unSave(topic._id)}/>
-                  <CopyIcon/>
+          {savedTopics.length > 0 ? 
+            <>
+              {savedTopics.map(topic => (
+              <div className='border rounded p-4 w-[50rem]'>
+                <div className='flex justify-between mb-5 mt-2'>
+                  <div className='text-xl '>{topic.title}</div>
+                  <div className='flex items-center justify-between gap-3'>
+                    <StarIconFull onClick={() => unSave(topic._id)}/>
+                    <CopyIcon onClick={async () => await copyTextToClipboard(`${topic.title}\n\n${topic.description}`).then(() => toast.success("Copied to clipboard"))}/>
+                  </div>
+                </div>
+                <div className='mb-8'>{topic.description}</div>
+                <div className='flex gap-4 items-center'>
+                  <div className='border rounded-md h-fit w-fit px-2 py-1'>{topic.expertise}</div>
+                  {"|"}
+                  <div className='flex gap-2'>
+                    {topic.tools.toString().split(",").map(lang => (
+                      <div className='border rounded-md px-2 py-1'>{lang}</div>
+                    ))}
+                  </div>
                 </div>
               </div>
-              <div className='mb-8'>{topic.description}</div>
-              <div className='flex gap-4 items-center'>
-                <div className='border rounded-md h-fit w-fit px-2 py-1'>{topic.expertise}</div>
-                {"|"}
-                <div className='flex gap-2'>
-                  {topic.tools.toString().split(",").map(lang => (
-                    <div className='border rounded-md px-2 py-1'>{lang}</div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          ))}
+              ))}
+            </>:
+              <div className='underline text-sm'>You have not saved any topics yet</div>
+            }
         </div>
       </div>
       ) : (
-      <div>Loading...</div>)}
+      <Loader/>
+      )}
     </>
   )
 }

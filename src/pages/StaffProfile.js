@@ -6,6 +6,7 @@ import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { baseUrl } from '../config';
 import { toast } from 'react-toastify';
+import Loader from '../components/Loader';
 
 // List of possible area of specialization
 const aos = [
@@ -139,7 +140,7 @@ const StaffProfile = () => {
           </div>
         </div>
     ):(
-      <div>Loading</div>
+      <Loader/>
     )}
     </>
     
