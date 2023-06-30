@@ -66,14 +66,15 @@ const StaffProfile = () => {
     <>
     {
       !loading? (
-        <div className='flex flex-col justify-start items-center w-[70%]'>
+        <div className='flex flex-col justify-start items-center w-[70%] sm:w-full'>
+          {/* Profile Information */}
           <p className='text-3xl my-2'>Profile Information</p>
           <hr className='w-[15rem] mb-8'/>
-          <div className='flex justify-between w-[60vw] mb-[8rem]'>
-              <div className='flex justify-center items-center w-[50%] h-[50%]'>
+          <div className='flex flex-row sm:flex-col justify-between w-[60vw] sm:w-full mb-[8rem] p-0 sm:px-4'>
+              <div className='flex justify-center items-center w-[50%] h-[50%] sm:w-full'>
                   <img className='rounded-full w-[20rem] border-4 border-primary-300' src={userDetails.image}/>
               </div>
-              <div className='w-[50%] flex flex-col gap-5 text-slate-500'>
+              <div className='w-[50%] sm:w-auto mt-0 sm:mt-8 flex flex-col gap-5 text-slate-500'>
                   <div className='flex'>
                       <div className='mr-4'>Title:</div><div className='text-black border px-2 py-1 border-slate-300 rounded'>{userDetails.title}</div>
                   </div>
@@ -92,7 +93,7 @@ const StaffProfile = () => {
                   <div className='flex'>
                       <div className='mr-4'>Qualifications:</div><div className='text-black border px-2 py-1 border-slate-300 rounded'>{userDetails.qualifications}</div>
                   </div>
-                  <div className='flex'>
+                  <div className='flex flex-wrap'>
                       <div className='mr-4'>Areas of specialization:</div><div className='text-black flex gap-2'>
                         {userDetails.specialization?.map(area => 
                           (<div className='border px-2 py-1 border-slate-300 rounded'>
@@ -104,7 +105,8 @@ const StaffProfile = () => {
               </div>
           </div>
 
-          <div className=' flex w-[50rem] justify-between items-center'>
+          {/* Topics */}
+          <div className='flex w-[50rem] sm:w-full justify-between items-center'>
               <div className='w-[7rem]'></div>
               <p className='text-3xl my-2'>Topics</p>
               <Link to={"/staff/add"}>
@@ -113,25 +115,24 @@ const StaffProfile = () => {
                   <svg className="w-4 h-5 ml-4 text-gray-800 text-white" ariaHidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18"><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 1v16M1 9h16"/></svg>
                 </button>
               </Link>
-              
           </div>
-          <hr className='w-[15rem] mb-8'/>
-          <div className='flex flex-col gap-4'>
+          <hr className='w-[15rem] sm:w-[6rem] mb-8'/>
+          <div className='flex flex-col gap-4 sm:px-4'>
               {topics?.map(topic => (
-                    <div className='border rounded p-4 w-[50rem] bg-yellow-50'>
+                    <div className='border rounded p-4 w-[50rem] sm:w-full bg-yellow-50'>
                     <div className='flex justify-between mb-5 mt-2'>
                       <div className='text-xl '>{topic.title}</div>
                       <div className='mr-4'>
-                        <PenIcon/>
+                        {/* <PenIcon/> */}
                       </div>
                     </div>
                     <div className='mb-8'>{topic.description}</div>
                     <div className='flex gap-4'>
-                      <div className='border rounded-md h-fit w-fit px-2 py-1'>{topic.expertise}</div>
+                      <div className='border border-orange-300 rounded-md h-fit w-fit px-2 py-1'>{topic.expertise}</div>
                       {"|"}
-                      <div className='flex gap-2'>
+                      <div className='flex flex-wrap gap-2'>
                         {topic.tools.toString().split(",").map(lang => (
-                          <div className='border rounded-md px-2 py-1'>{lang}</div>
+                          <div className='border border-teal-500 rounded-md px-2 py-1'>{lang}</div>
                         ))}
                       </div>
                     </div>

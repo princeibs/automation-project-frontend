@@ -60,11 +60,11 @@ const unSave = async (topicId) => {
       <div className=''>
         <div className='text-4xl mx-auto mb-[1rem] w-fit'>Saved Topics</div>
         <p className='mx-auto mb-[2rem] w-fit'>List of topics you have saved</p>
-        <div className='m-auto w-fit flex gap-3 flex-col'>
+        <div className='m-auto w-fit flex gap-3 flex-col sm:p-2'>
           {savedTopics.length > 0 ? 
             <>
               {savedTopics.map(topic => (
-              <div className='border rounded p-4 w-[50rem]'>
+              <div className='border rounded p-4 w-[50rem] sm:w-full'>
                 <div className='flex justify-between mb-5 mt-2'>
                   <div className='text-xl '>{topic.title}</div>
                   <div className='flex items-center justify-between gap-3'>
@@ -73,10 +73,10 @@ const unSave = async (topicId) => {
                   </div>
                 </div>
                 <div className='mb-8'>{topic.description}</div>
-                <div className='flex gap-4 items-center'>
+                <div className='flex gap-4 items-start'>
                   <div className='border rounded-md h-fit w-fit px-2 py-1'>{topic.expertise}</div>
                   {"|"}
-                  <div className='flex gap-2'>
+                  <div className='flex flex-wrap gap-2'>
                     {topic.tools.toString().split(",").map(lang => (
                       <div className='border rounded-md px-2 py-1'>{lang}</div>
                     ))}

@@ -16,6 +16,13 @@ const aos = [
     {name: "PHP", value: "rust"},
     {name: "C", value: "c"},
     {name: "C++", value: "cpp"},
+    {name: "Rust", value: "rust"},
+    {name: "Python", value: "python"},
+    {name: "Java", value: "java"},
+    {name: "JavaScript", value: "javascript"},
+    {name: "PHP", value: "rust"},
+    {name: "C", value: "c"},
+    {name: "C++", value: "cpp"},
     {name: "Rust", value: "rust"}
 ]
 
@@ -39,10 +46,10 @@ const Search = ({handleSearch, loading}) => {
     const formSubmit = (e) => handleSearch(e, areaOfSpecialization, levelOfExpertise, programmingLanguages, searchType)
 
   return (
-   <div className=''>
+   <div className='w-auto sm:w-full sm:px-3'>
     <div className='text-4xl mx-auto mb-[1rem] w-fit'>Search for topic</div>
-    <p className='mx-auto mb-[2rem] w-fit'>Enter the description of the topic you want to work on</p>
-    <form className='w-[50rem] m-auto' onSubmit={formSubmit}>
+    <p className='mx-auto mb-[2rem] w-fit text-center'>Enter the description of the topic you want to work on</p>
+    <form className='w-[50rem] sm:w-full m-auto' onSubmit={formSubmit}>
       <label for="areaOfSpecialization" class="mb-2 font-semibold text-gray-900">Area of specialization</label>
       <select id="" onChange={e => setAreaOfSpecialization(e.target.value)} class="bg-gray-50 mb-6 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
         <option selected>What is your area of specialization</option>
@@ -63,9 +70,9 @@ const Search = ({handleSearch, loading}) => {
       
       <p class="mb-1 font-semibold text-gray-900">Programming languages</p>
       <p className='text-sm mb-2'>Which of the programming languages/tools are you familar with?</p>
-      <ul class="mb-6 items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex">
+      <ul class="flex flex-wrap gap-1 mb-6 items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg">
             {aos.map(({name, value}) => (
-                <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r">
+                <li class="w-auto px-1 border-b border-gray-500 sm:border-b sm:border-r">
                     <div class="flex items-center pl-3">
                         <input id={value} type="checkbox" name={name} value={value} onChange={handleProgrammingLanguagesChange} class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"/>
                         <label for={value} class="w-full py-3 ml-2 text-sm font-medium text-gray-900">{name}</label>
@@ -101,12 +108,12 @@ const Search = ({handleSearch, loading}) => {
 const Recommended = ({showSearch, topics, copy, save, unSave, saved, loading}) => {
     return (<>
         {!loading ? (
-            <div className=''>
+            <div className='px-3'>
             <div className='text-4xl mx-auto mb-[1rem] w-fit'>Recommended</div>
-            <p className='mx-auto mb-[2rem] w-fit'>Below is a list of recommended topics based on your description</p>
+            <p className='mx-auto mb-[2rem] w-fit text-center'>Below is a list of recommended topics based on your description</p>
             <div className='m-auto w-fit flex gap-3 flex-col'>
               {topics.map(topic => (
-                <div className='border rounded p-4 w-[50rem] bg-yellow-50'>
+                <div className='border rounded p-4 w-[50rem] sm:w-full bg-yellow-50'>
                   <div className='flex justify-between items-start mb-5 mt-2 mr-2'>
                     <div className='text-xl '>{topic.title}</div>
                     <div className='flex items-center justify-between gap-3'>
@@ -118,10 +125,10 @@ const Recommended = ({showSearch, topics, copy, save, unSave, saved, loading}) =
                     </div>
                   </div>
                   <div className='mb-8'>{topic.description}</div>
-                  <div className='flex gap-4 items-center'>
+                  <div className='flex gap-4'>
                     <div className='border rounded-md h-fit w-fit px-2 py-1'>{topic.expertise}</div>
                     {"|"}
-                    <div className='flex gap-2'>
+                    <div className='flex flex-wrap gap-2'>
                       {topic.tools.toString().split(",").map(tool => (
                         <div className='border rounded-md px-2 py-1'>{tool}</div>
                       ))}

@@ -64,6 +64,8 @@ const StaffRegister = () => {
             if (e?.response?.status == 400) {
                 toast.error("User already exists")
             } else {
+                toast.error(e?.response?.data?.message);
+                toast.error(e?.message)
                 console.error(e)
             }
         } finally {
@@ -78,8 +80,7 @@ useEffect(() => {
     }    
 }, [])
   return (
-    <section class="h-auto">
-      <div class="flex flex-col items-center px-6 mx-auto md:h-screen lg:py-0">
+      <div class="flex flex-col items-center px-6 sm:px-2 mx-auto w-full">
           <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0">
               <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                   <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
@@ -114,10 +115,10 @@ useEffect(() => {
                       <label for="specialization" class="block mb-2 text-sm font-medium text-gray-900">Areas of specialization</label>
                         <ul class="flex flex-col items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg">
                             {aos.map(({name, value}) => (
-                                <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                                <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r">
                                     <div class="flex items-center pl-3">
                                         <input id="" type="checkbox" name={name} value={value} onChange={handleSpecializationChange} class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"/>
-                                        <label for={name} class="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{name}</label>
+                                        <label for={name} class="w-full py-3 ml-2 text-sm font-medium">{name}</label>
                                     </div>
                                 </li>
                             ))}
@@ -149,7 +150,6 @@ useEffect(() => {
               </div>
           </div>
       </div>
-    </section>
   )
 }
 

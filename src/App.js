@@ -68,13 +68,12 @@ useEffect(() => {
             <Route path='/staff/profile' element={<StaffProfile/>}/>
             <Route path='/staff/add' element={<AddTopic/>}/>
           </Routes>
-          <Footer/>
         </Router>
       ) : (
         <Loader/>
       )}
-      
       <ToastContainer position='bottom-center' />
+      <Footer/>
     </div>
   )
 }

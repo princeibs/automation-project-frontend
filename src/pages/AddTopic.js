@@ -48,8 +48,9 @@ const AddTopic = () => {
       
     }
   return (
-    <div className='w-[50rem] mt-8'>
-        <form className='' onSubmit={handleSubmit}>
+    <div className='w-[50rem] sm:w-full sm:px-4 mt-8 min-h-screen'>
+        <p className='text-3xl my-2'>Add new topic to your profile</p>
+        <form className='mt-8' onSubmit={handleSubmit}>
         <div class="mb-6"> 
             <label for="title" class="mb-2 font-semibold text-gray-900">Title</label>
             <input type="text" id="title" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5" placeholder="Enter title for the new topic" onChange={e => setTitle(e.target.value)} required/>
