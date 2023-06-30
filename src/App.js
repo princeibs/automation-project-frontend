@@ -17,7 +17,7 @@ export default function App() {
 const [cookies, setCookies] = useCookies(["access_token"]);
 const [userDetails, setUserDetails] = useState({})
 const userId = useGetUserId();
-const [loading, setLoading] = useState(true)
+const [loading, setLoading] = useState(false)
 
 const role = window.localStorage.getItem("role");
 
