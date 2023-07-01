@@ -31,9 +31,15 @@ const StaffProfile = () => {
     const getUserDetails = async () => {
         try {
           setLoading(true)
-          const res = await axios.post(`${baseUrl}/staff/details`, {id: userId});
+          const res = await axios.get(`${baseUrl}/staff/details`, {
+            headers: {
+              authorization: cookies.access_token,
+              id: userId
+            }
+          });
           setUserDetails(res.data)
         } catch (e) {
+          toast.error(e?.message)
           console.log(e)
         } finally {
           setLoading(false)
@@ -43,9 +49,15 @@ const StaffProfile = () => {
     const loadTopics = async () => {
       try {
         setLoading(true)
-        const res = await axios.post(`${baseUrl}/staff/topics`, {id: userId})
+        const res = await axios.get(`${baseUrl}/staff/topics`, {
+          headers: {
+            authorization: cookies.access_token,
+            id: userId
+          }
+        })
         setTopics(res.data);
       } catch (e) {
+        toast.error(e?.message)
         console.log(e)
       } finally {
         setLoading(false)

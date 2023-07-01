@@ -30,7 +30,15 @@ const AddTopic = () => {
         try {
             if (cookies.access_token && userId) {
                 const processedTools = tools.split(",").map(tool => String(tool).toLowerCase()).toString();
-                const res = await axios.post(`${baseUrl}/staff/add`, {userId, title, description, levelOfExpertise, tools: processedTools});
+                const res = await axios.post(`${baseUrl}/staff/add`, 
+                {
+                    title, description, levelOfExpertise, tools: processedTools
+                },{
+                    headers: {
+                        authorization: cookies.access_token,
+                        id: userId
+                    }
+                });
                 clear();
                 window.location.assign("/staff/profile");
                 toast.success("Topic created successfully");
@@ -41,6 +49,7 @@ const AddTopic = () => {
                 //navigate("/staff/login");
             }
         } catch (e) {
+            toast.error(e?.message)
             console.log(e)
         } finally {
             setLoading(false)

@@ -24,11 +24,17 @@ const role = window.localStorage.getItem("role");
 const getUserDetails = async () => {
   try {
     setLoading(true)
-    const res = role==1 ?  await axios.post(`${baseUrl}/staff/details`, {id: userId}) : role==2 ? await axios.post(`${baseUrl}/auth/details`, {id: userId}): ""
+    const res = 
+      role==1 ? await axios.get(`${baseUrl}/staff/details`, {headers: {authorization: cookies.access_token, id: userId}}) : 
+      role==2 ? await axios.get(`${baseUrl}/auth/details`, {headers: {authorization: cookies.access_token, id: userId}}): ""
     setUserDetails(res.data)
   } catch (e) {
-    console.log(e);
-    toast.error(e?.message)
+    if (e?.response?.status == 404) {
+      toast.error("Authentication failed. Please login again")
+    } else {
+      console.log(e);
+      toast.error(e?.message)
+    }
   } finally {
     setLoading(false)
   }

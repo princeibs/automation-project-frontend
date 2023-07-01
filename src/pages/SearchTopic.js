@@ -6,6 +6,7 @@ import { useGetUserId } from '../hooks/useGetUserId';
 import { baseUrl } from '../config';
 import StarIconFull from '../components/icons/StarIconFull';
 import { toast } from 'react-toastify';
+import { useCookies } from 'react-cookie';
 import Loader from '../components/Loader';
 
 // List of possible area of specialization
@@ -152,7 +153,8 @@ const SearchTopic = () => {
     const [display, setDisplay] = useState(1);
     const [loading, setLoading] = useState(false)
 
-    const userId = useGetUserId()
+    const userId = useGetUserId();
+    const [cookies, _] = useCookies(["access_token"]);
 
     const copyTextToClipboard = async (text) => {
       if ('clipboard' in navigator) {
@@ -164,7 +166,11 @@ const SearchTopic = () => {
 
     const saved = async () => {
         try {
-            const saved = await axios.post(`${baseUrl}/auth/saved`, {userId});
+            const saved = await axios.get(`${baseUrl}/auth/saved`, {
+              headers: {
+                authorization: cookies.access_token, id: userId
+              }
+            });
             setSavedTopics(saved.data)
             return saved;
         } catch (e) {
@@ -176,7 +182,14 @@ const SearchTopic = () => {
         try {
             e.preventDefault();
             setLoading(true);
-            const recommended = await axios.post(`${baseUrl}/auth/search`, {specialization: areaOfSpecialization, expertise: levelOfExpertise, tools: programmingLanguages, type: searchType});
+            const recommended = await axios.get(`${baseUrl}/auth/search`, {
+              headers: {
+                authorization: cookies.access_token,
+                specialization: areaOfSpecialization, 
+                expertise: levelOfExpertise, 
+                tools: programmingLanguages, 
+                type: searchType
+              }});
             const _saved = await saved();
             setSavedTopics(_saved.data);
             setRecommendedTopics(recommended.data);
@@ -190,8 +203,11 @@ const SearchTopic = () => {
 
     const save = async (topicId) => {
         try {
-          const res = await axios.post(`${baseUrl}/auth/save`, {userId, topicId});
-          console.log(res)
+          const res = await axios.put(`${baseUrl}/auth/save`, {userId, topicId}, {
+            headers: {
+              authorization: cookies.access_token
+            }
+          });
           await saved();
           toast.success("Saved")
         } catch (e) {
@@ -201,8 +217,11 @@ const SearchTopic = () => {
 
     const unSave = async (topicId) => {
         try {
-          const res = await axios.post(`${baseUrl}/auth/unsave`, {userId, topicId});
-          console.log(res)
+          const res = await axios.put(`${baseUrl}/auth/unsave`, {userId, topicId}, {
+            headers: {
+              authorization: cookies.access_token
+            }
+          });
           await saved();
           toast.success("Unsaved")
         } catch (e) {
