@@ -64,7 +64,7 @@ const unSave = async (topicId) => {
           {savedTopics.length > 0 ? 
             <>
               {savedTopics.map(topic => (
-              <div className='border rounded p-4 w-[50rem] sm:w-full'>
+              <div className='border-2 rounded p-4 w-[50rem] sm:w-full'>
                 <div className='flex justify-between mb-5 mt-2'>
                   <div className='text-xl '>{topic.title}</div>
                   <div className='flex items-center justify-between gap-3'>

@@ -18,7 +18,7 @@ const Navbar = ({userDetails, userId, cookies, role, setCookies, setUserDetails}
   return (
     <div className='flex flex-row items-center w-full px-[20px] py-[30px] mb-4 bg-primary-100 sm:flex-col sm:items-start sm:p-3'>
       <div id='logo-text' className='text-6xl sm:text-4xl sm:font-semibold sm:mx-auto'>Finder</div>
-      <div className='border flex flex-row justify-around items-center w-[700px] h-[50px] rounded-[10px] ml-[11rem] no-underline sm:m-0 sm:w-full sm:border-0 sm:flex-wrap sm:h-auto sm:items-start sm:mt-4 sm:gap-1'>  
+      <div className='border-2 border-primary-300 flex flex-row justify-around items-center w-[700px] h-[50px] rounded-[10px] ml-[11rem] no-underline sm:m-0 sm:w-full sm:border-0 sm:flex-wrap sm:h-auto sm:items-start sm:mt-4 sm:gap-1'>  
         <Link className='bg-primary-100 sm:bg-primary-0 sm:rounded-md sm:px-6 sm:py-2 drop-shadow-[0] sm:drop-shadow' to="/">Home</Link>
         {(userDetails.role == 2) && <Link className='bg-primary-100 sm:bg-primary-0 sm:rounded-md sm:px-6 sm:py-2 drop-shadow-[0] sm:drop-shadow' to="/search">Search</Link> }
         {(userDetails.role == 2) && <Link className='bg-primary-100 sm:bg-primary-0 sm:rounded-md sm:px-6 sm:py-2 drop-shadow-[0] sm:drop-shadow' to="/saved">Saved</Link> }

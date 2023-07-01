@@ -4,7 +4,7 @@ import { Home, SearchTopic, SavedTopics, AddTopic } from './pages';
 import {Register, Login, Admin, StaffLogin, StaffRegister, StaffProfile} from "./pages/auth"
 import Navbar from "./components/Navbar"
 import Footer from './components/Footer';
-import { ToastContainer } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useCookies } from 'react-cookie';
 import { useGetUserId } from './hooks/useGetUserId';
@@ -27,7 +27,8 @@ const getUserDetails = async () => {
     const res = role==1 ?  await axios.post(`${baseUrl}/staff/details`, {id: userId}) : role==2 ? await axios.post(`${baseUrl}/auth/details`, {id: userId}): ""
     setUserDetails(res.data)
   } catch (e) {
-    console.log(e)
+    console.log(e);
+    toast.error(e?.message)
   } finally {
     setLoading(false)
   }

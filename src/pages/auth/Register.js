@@ -53,8 +53,8 @@ const Register = () => {
         }    
     }, [])
   return (
-      <div class="flex flex-col items-center px-6 sm:px-2 mx-auto md:h-screen lg:py-0 w-full">
-          <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0">
+      <div class="flex flex-col items-center px-6 sm:px-2 mx-auto w-[35rem] min-h-[80vh] sm:w-full">
+          <div class="w-full bg-white rounded-lg shadow">
               <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                   <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
                       Register your details (Student)
