@@ -18,13 +18,6 @@ const aos = [
     {name: "C", value: "c"},
     {name: "C++", value: "cpp"},
     {name: "Rust", value: "rust"},
-    {name: "Python", value: "python"},
-    {name: "Java", value: "java"},
-    {name: "JavaScript", value: "javascript"},
-    {name: "PHP", value: "rust"},
-    {name: "C", value: "c"},
-    {name: "C++", value: "cpp"},
-    {name: "Rust", value: "rust"}
 ]
 
 const Search = ({handleSearch, loading}) => {

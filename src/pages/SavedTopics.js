@@ -67,10 +67,10 @@ const unSave = async (topicId) => {
   return (
     <>
     {!loading ? (
-      <div className='min-h-[80vh]'>
+      <div className='min-h-[80vh] w-full'>
         <div className='text-4xl mx-auto mb-[1rem] w-fit'>Saved Topics</div>
         <p className='mx-auto mb-[2rem] w-fit'>List of topics you have saved</p>
-        <div className='m-auto w-fit flex gap-3 flex-col sm:p-2'>
+        <div className='m-auto w-fit sm:w-full flex gap-3 flex-col sm:p-2'>
           {savedTopics.length > 0 ? 
             <>
               {savedTopics.map(topic => (

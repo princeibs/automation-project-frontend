@@ -6,11 +6,23 @@ import { baseUrl } from '../config'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 
+// List of possible area of specialization
+const aos = [
+    {name: "Python", value: "python"},
+    {name: "Java", value: "java"},
+    {name: "JavaScript", value: "javascript"},
+    {name: "PHP", value: "rust"},
+    {name: "C", value: "c"},
+    {name: "C++", value: "cpp"},
+    {name: "Rust", value: "rust"},
+    {name: "Others", value: "others"}
+]
+
 const AddTopic = () => {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("")
     const [levelOfExpertise, setLevelOfExpertise] = useState("")
-    const [tools, setTools] = useState("");
+    const [programmingLanguages, setProgrammingLanguages] = useState("");
     const [categories, setCategories] = useState("")
     const [loading, setLoading] = useState(false)
 
@@ -22,24 +34,34 @@ const AddTopic = () => {
         setTitle("");
         setDescription("");
         setLevelOfExpertise("");
-        setTools("");
+        setProgrammingLanguages("");
     }
 
     const handleSelectChange = (e) => {
         const options = Array.from(e.target.options);
         const selectedValues = options.filter((option) => option.selected).map((option) => option.value);
         setCategories(selectedValues);
-      };
+    };
+
+    const handleProgrammingLanguagesChange = (e) => {
+        const { value, checked } = e.target;
+        if (checked) {
+            setProgrammingLanguages(prevLanguages => [...prevLanguages, value]);
+        } else {
+            setProgrammingLanguages(prevLanguages =>
+            prevLanguages.filter(language => language !== value)
+            );
+        }
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true)
         try {
             if (cookies.access_token && userId) {
-                const processedTools = tools.split(",").map(tool => String(tool).toLowerCase()).toString();
                 const res = await axios.post(`${baseUrl}/staff/add`, 
                 {
-                    title, description, levelOfExpertise, tools: processedTools, categories
+                    title, description, levelOfExpertise, tools: programmingLanguages, categories
                 },{
                     headers: {
                         authorization: cookies.access_token,
@@ -85,7 +107,7 @@ const AddTopic = () => {
         </div>
         <div class="flex flex-col items-start mb-3">
             <label for="" class="mb-2 font-semibold text-gray-900">Category of project</label>
-            <label for="" class="mb-2 font-sm text-gray-900">Which category does the project belongs (multiple selection allowed)</label>
+            <label for="" class="mb-2 text-sm text-gray-400">Which category does the project belongs (multiple selection allowed)</label>
             <select multiple id="" onChange={handleSelectChange} value={categories} class="bg-gray-50 mb-6 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5" required>
                 <option value="web">Web</option>
                 <option value="mobile">Mobile</option>
@@ -96,8 +118,18 @@ const AddTopic = () => {
             </select>
         </div>
         <div class="mb-6"> 
-            <label for="title" class="mb-2 font-semibold text-gray-900">Tools</label>
-            <input type="text" id="title" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5" placeholder="Comma saperated list of programming languages/frameworks project can be built with" onChange={e => setTools(e.target.value)} required/>
+            <label for="title" class="mb-4 font-semibold text-gray-900">Programming Languages/Tools</label>
+            <p className='text-sm text-gray-400'>List of programming languages/tools project can be built with</p>
+            <ul class="flex flex-wrap gap-1 mb-6 items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg">
+            {aos.map(({name, value}) => (
+                <li class="w-auto px-1 border-b border-gray-500 sm:border-b sm:border-r">
+                    <div class="flex items-center pl-3">
+                        <input id={value} type="checkbox" name={name} value={value} onChange={handleProgrammingLanguagesChange} class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"/>
+                        <label for={value} class="w-full py-3 ml-2 text-sm font-medium text-gray-900">{name}</label>
+                    </div>
+                </li>
+            ))}
+            </ul>
         </div>
         <button type="submit" disabled={loading} class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center disabled:bg-primary-300">
             {loading ? (<svg aria-hidden="true" role="status" class="inline w-6 h-6 mr-3 text-white animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
