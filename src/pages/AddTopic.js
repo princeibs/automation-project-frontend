@@ -11,6 +11,7 @@ const AddTopic = () => {
     const [description, setDescription] = useState("")
     const [levelOfExpertise, setLevelOfExpertise] = useState("")
     const [tools, setTools] = useState("");
+    const [categories, setCategories] = useState("")
     const [loading, setLoading] = useState(false)
 
     const [cookies, _] = useCookies(["access_token"]);
@@ -24,6 +25,12 @@ const AddTopic = () => {
         setTools("");
     }
 
+    const handleSelectChange = (e) => {
+        const options = Array.from(e.target.options);
+        const selectedValues = options.filter((option) => option.selected).map((option) => option.value);
+        setCategories(selectedValues);
+      };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true)
@@ -32,7 +39,7 @@ const AddTopic = () => {
                 const processedTools = tools.split(",").map(tool => String(tool).toLowerCase()).toString();
                 const res = await axios.post(`${baseUrl}/staff/add`, 
                 {
-                    title, description, levelOfExpertise, tools: processedTools
+                    title, description, levelOfExpertise, tools: processedTools, categories
                 },{
                     headers: {
                         authorization: cookies.access_token,
@@ -40,13 +47,11 @@ const AddTopic = () => {
                     }
                 });
                 clear();
-                window.location.assign("/staff/profile");
                 toast.success("Topic created successfully");
-                //navigate("staff/profile", {replate: true})
+                navigate("/")
             } else {
                 toast.warning("Please login before adding topic");
-                window.location.assign("/staff/login");
-                //navigate("/staff/login");
+                navigate("/");
             }
         } catch (e) {
             toast.error(e?.message)
@@ -76,6 +81,18 @@ const AddTopic = () => {
                 <option value="beginner">Beginner</option>
                 <option value="intermediate">Intermediate</option>
                 <option value="expert">Expert</option>
+            </select>
+        </div>
+        <div class="flex flex-col items-start mb-3">
+            <label for="" class="mb-2 font-semibold text-gray-900">Category of project</label>
+            <label for="" class="mb-2 font-sm text-gray-900">Which category does the project belongs (multiple selection allowed)</label>
+            <select multiple id="" onChange={handleSelectChange} value={categories} class="bg-gray-50 mb-6 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5" required>
+                <option value="web">Web</option>
+                <option value="mobile">Mobile</option>
+                <option value="ai">AI</option>
+                <option value="ml">ML</option>
+                <option value="iot">IOT</option>
+                <option value="others">Others</option>
             </select>
         </div>
         <div class="mb-6"> 

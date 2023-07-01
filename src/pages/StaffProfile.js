@@ -106,7 +106,8 @@ const StaffProfile = () => {
                       <div className='mr-4'>Qualifications:</div><div className='text-black border px-2 py-1 border-slate-300 rounded'>{userDetails.qualifications}</div>
                   </div>
                   <div className='flex flex-wrap'>
-                      <div className='mr-4'>Areas of specialization:</div><div className='text-black flex gap-2'>
+                      <div className='mr-4'>Areas of specialization:</div>
+                      <div className='text-black flex gap-2 flex-wrap'>
                         {userDetails.specialization?.map(area => 
                           (<div className='border px-2 py-1 border-slate-300 rounded'>
                             {aos.filter(obj => obj.value == area)[0].name}
@@ -124,7 +125,7 @@ const StaffProfile = () => {
               <Link to={"/staff/add"}>
                 <button type="button" className="text-white bg-primary-600 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center">
                   Add Topic
-                  <svg className="w-4 h-5 ml-4 text-gray-800 text-white" ariaHidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18"><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 1v16M1 9h16"/></svg>
+                  <svg className="w-4 h-5 ml-4 text-white" ariaHidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18"><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 1v16M1 9h16"/></svg>
                 </button>
               </Link>
           </div>
@@ -140,6 +141,12 @@ const StaffProfile = () => {
                     </div>
                     <div className='mb-8'>{topic.description}</div>
                     <div className='flex gap-4'>
+                      <div className='flex flex-wrap gap-2'>
+                        {topic?.categories?.toString().split(",").map(catg => (
+                          <div className='border border-primary-500 rounded-md px-2 py-1'>{catg}</div>
+                        ))}
+                      </div>
+                      {"|"}
                       <div className='border border-orange-300 rounded-md h-fit w-fit px-2 py-1'>{topic.expertise}</div>
                       {"|"}
                       <div className='flex flex-wrap gap-2'>
