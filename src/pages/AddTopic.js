@@ -6,16 +6,27 @@ import { baseUrl } from '../config'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 
+
 // List of possible area of specialization
-const aos = [
+const tools = [
     {name: "Python", value: "python"},
     {name: "Java", value: "java"},
     {name: "JavaScript", value: "javascript"},
-    {name: "PHP", value: "rust"},
+    {name: "PHP", value: "php"},
     {name: "C", value: "c"},
     {name: "C++", value: "cpp"},
+    {name: "C#", value: "csharp"},
     {name: "Rust", value: "rust"},
-    {name: "Others", value: "others"}
+    {name: "Solidity (Ethereum)", value: "solidity"},
+    {name: "Swift", value: "swift"},
+    {name: "Arduino", value: "arduino"},
+    {name: "TensorFlow", value: "tensorflow"},
+    {name: "Kotlin", value: "kotlin"},
+    {name: "MATLAB", value: "matlab"},
+    {name: "React Native", value: "react-native"},
+    {name: "Unity (C#)", value: "unity-csharp"},
+    {name: "MIDI Libraries", value: "midi-libraries"},
+    {name: "Others", value: "others"},
 ]
 
 const AddTopic = () => {
@@ -121,7 +132,7 @@ const AddTopic = () => {
             <label for="title" class="mb-4 font-semibold text-gray-900">Programming Languages/Tools</label>
             <p className='text-sm text-gray-400'>List of programming languages/tools project can be built with</p>
             <ul class="flex flex-wrap gap-1 mb-6 items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg">
-            {aos.map(({name, value}) => (
+            {tools.map(({name, value}) => (
                 <li class="w-auto px-1 border-b border-gray-500 sm:border-b sm:border-r">
                     <div class="flex items-center pl-3">
                         <input id={value} type="checkbox" name={name} value={value} onChange={handleProgrammingLanguagesChange} class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"/>

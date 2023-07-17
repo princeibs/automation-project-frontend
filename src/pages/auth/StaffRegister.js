@@ -12,6 +12,7 @@ const aos = [
     {name: "Mobile App Development", value: "mobile"},
     {name: "Artificial Intelligence", value: "ai"},
     {name: "Machine Learning", value: "ml"},
+    {name: "Internet of Things (IOT)", value: "iot"},
     {name: "Data Science", value: "ds"},
     {name: "Cyber Security", value: "cs"},
     {name: "Blockchain Engineering", value: "blockchain"}
@@ -93,7 +94,7 @@ useEffect(() => {
                       </div>
                       <div>
                           <label for="firstName" class="block mb-2 text-sm font-medium text-gray-900">Title</label>
-                          <input type="text" name="firstName" id="firstName" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Prof." value={title} onChange={e => setTitle(e.target.value)}/>
+                          <input type="text" name="firstName" id="firstName" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="" value={title} onChange={e => setTitle(e.target.value)}/>
                       </div>
                       <div>
                           <label for="firstName" class="block mb-2 text-sm font-medium text-gray-900">First Name</label>
@@ -109,7 +110,7 @@ useEffect(() => {
                       </div>
                       <div>
                           <label for="qualifications" class="block mb-2 text-sm font-medium text-gray-900">Qualifications</label>
-                          <input type="text" name="qualifications" id="qualifications" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " placeholder="Bsc. Msc. " value={qualifications} onChange={e => setQualifications(e.target.value)} required/>
+                          <input type="text" name="qualifications" id="qualifications" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " placeholder="B.Sc. M.Sc. Ph.D." value={qualifications} onChange={e => setQualifications(e.target.value)} required/>
                       </div>
                       <div>
                       <label for="specialization" class="block mb-2 text-sm font-medium text-gray-900">Areas of specialization</label>

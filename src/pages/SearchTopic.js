@@ -11,13 +11,24 @@ import Loader from '../components/Loader';
 
 // List of possible area of specialization
 const aos = [
-    {name: "Python", value: "python"},
-    {name: "Java", value: "java"},
-    {name: "JavaScript", value: "javascript"},
-    {name: "PHP", value: "rust"},
-    {name: "C", value: "c"},
-    {name: "C++", value: "cpp"},
-    {name: "Rust", value: "rust"},
+  {name: "Python", value: "python"},
+  {name: "Java", value: "java"},
+  {name: "JavaScript", value: "javascript"},
+  {name: "PHP", value: "php"},
+  {name: "C", value: "c"},
+  {name: "C++", value: "cpp"},
+  {name: "C#", value: "csharp"},
+  {name: "Rust", value: "rust"},
+  {name: "Solidity (Ethereum)", value: "solidity"},
+  {name: "Swift", value: "swift"},
+  {name: "Arduino", value: "arduino"},
+  {name: "TensorFlow", value: "tensorflow"},
+  {name: "Kotlin", value: "kotlin"},
+  {name: "MATLAB", value: "matlab"},
+  {name: "React Native", value: "react-native"},
+  {name: "Unity (C#)", value: "unity-csharp"},
+  {name: "MIDI Libraries", value: "midi-libraries"},
+  {name: "Others", value: "others"},
 ]
 
 const Search = ({handleSearch, loading}) => {
@@ -49,14 +60,16 @@ const Search = ({handleSearch, loading}) => {
         <option selected>What is your area of specialization</option>
         <option value="web">Web development</option>
         <option value="mobile">Mobile development</option>
+        <option value="ai">AI</option>
+        <option value="ml">ML</option>
         <option value="aiml">AI/ML</option>
         <option value="iot">Internet of things (IOT)</option>
+        <option value="others">Others</option>
       </select>
 
       <label for="" class="mb-2 font-semibold text-gray-900">Level of Expertise</label>
       <select id="" onChange={e => setLevelOfExpertise(e.target.value)} class="bg-gray-50 mb-6 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
         <option selected>What is your level of expertise</option>
-        <option value="novice">Novice</option>
         <option value="beginner">Beginner</option>
         <option value="intermediate">Intermediate</option>
         <option value="expert">Expert</option>
