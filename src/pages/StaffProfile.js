@@ -16,7 +16,8 @@ const aos = [
   {name: "Machine Learning", value: "ml"},
   {name: "Data Science", value: "ds"},
   {name: "Cyber Security", value: "cs"},
-  {name: "Blockchain Engineering", value: "blockchain"}
+  {name: "Blockchain Engineering", value: "blockchain"},
+  {name: "Internet of Things", value: "iot"}
 ]
 
 const StaffProfile = () => {
