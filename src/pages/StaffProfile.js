@@ -7,6 +7,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { baseUrl } from '../config';
 import { toast } from 'react-toastify';
 import Loader from '../components/Loader';
+import UploadImage from '../components/UploadImage';
 
 // List of possible area of specialization
 const aos = [
@@ -26,9 +27,35 @@ const StaffProfile = () => {
     const [cookies, _] = useCookies(["access_token"]);
     const [topics, setTopics] = useState([]);
     const [loading, setLoading] = useState(false);
+
+    const [newImage, setNewImage] = useState(userDetails.image)
     
     const userId = useGetUserId()
     const navigate = useNavigate()
+
+    const upload = async (imageUrl) => {
+      try {
+          if (cookies.access_token && userId) {
+              const res = await axios.put(`${baseUrl}/staff/uploadImage`, 
+              {
+                  newImage: imageUrl
+              },{
+                  headers: {
+                      authorization: cookies.access_token,
+                      id: userId
+                  }
+              });
+              toast.success("Image uploaded");
+              window.location.reload()
+          } else {
+              toast.warning("Please log in to continue");
+              navigate("/");
+          }
+      } catch (e) {
+          toast.error(e?.message)
+          console.log(e)
+      }
+    }
 
     const getUserDetails = async () => {
         try {
@@ -85,9 +112,11 @@ const StaffProfile = () => {
           <p className='text-3xl my-2'>Profile Information</p>
           <hr className='w-[15rem] mb-8'/>
           <div className='flex flex-row sm:flex-col justify-between w-[60vw] sm:w-full mb-[8rem] p-0 sm:px-4'>
-              <div className='flex justify-center items-center w-[50%] h-[50%] sm:w-full'>
-                  <img className='rounded-full w-[20rem] border-4 border-primary-300' src={userDetails.image}/>
+              <div className='flex flex-col justify-center items-center w-[50%] h-[50%] sm:w-full'>
+                  <img className='rounded-full w-[20rem] h-[20rem] object-fit border-4 border-primary-300' src={newImage || userDetails.image}/>
+                  <UploadImage setImage={setNewImage} upload={upload}/>
               </div>
+              
               <div className='w-[50%] sm:w-auto mt-0 sm:mt-8 flex flex-col gap-5 text-slate-500'>
                   <div className='flex'>
                       <div className='mr-4'>Title:</div><div className='text-black border px-2 py-1 border-slate-300 rounded'>{userDetails.title}</div>
