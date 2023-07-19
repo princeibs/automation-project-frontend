@@ -20,8 +20,23 @@ const Register = () => {
     const navigate = useNavigate();
     const userId = useGetUserId();
 
+    const isMatricNoValid = () => {
+        const split_matric = matricNo.split("/");
+        const school = split_matric[0].toLowerCase()
+        const dept = split_matric[2].toLowerCase()
+
+        if (school == "kasu" && dept == "csc") {
+            return true
+        }
+        return false
+    }
+
     const handleSubmit = async (event) => {
         event.preventDefault();
+        if (!isMatricNoValid()) {
+            toast.warn("Only matric numbers from computer science department are allowed");
+            return;
+        }
         if (password !== confirmPassword) {
             toast.warning("Passwords must match");
             return
@@ -70,7 +85,7 @@ const Register = () => {
                       </div>
                       <div>
                           <label for="otherName" class="block mb-2 text-sm font-medium text-gray-900 ">Other Name(s)</label>
-                          <input type="text" name="otherName" id="otherName" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Prince" value={otherNames} onChange={e => setOtherNames(e.target.value)}/>
+                          <input type="text" name="otherName" id="otherName" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="" value={otherNames} onChange={e => setOtherNames(e.target.value)}/>
                       </div>
                       <div>
                           <label for="matricNo" class="block mb-2 text-sm font-medium text-gray-900">Matric Number</label>

@@ -17,7 +17,8 @@ const aos = [
   {name: "Data Science", value: "ds"},
   {name: "Cyber Security", value: "cs"},
   {name: "Blockchain Engineering", value: "blockchain"},
-  {name: "Internet of Things", value: "iot"}
+  {name: "Internet of Things", value: "iot"},
+  {name: "Others", value: "others"}
 ]
 
 const StaffProfile = () => {
@@ -144,7 +145,7 @@ const StaffProfile = () => {
                     <div className='flex gap-4'>
                       <div className='flex flex-wrap gap-2'>
                         {topic?.categories?.toString().split(",").map(catg => (
-                          <div className='border border-primary-500 rounded-md px-2 py-1'>{catg}</div>
+                          <div className='border border-primary-500 rounded-md h-fit px-2 py-1'>{catg}</div>
                         ))}
                       </div>
                       {"|"}

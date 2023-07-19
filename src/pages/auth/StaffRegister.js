@@ -15,7 +15,8 @@ const aos = [
     {name: "Internet of Things (IOT)", value: "iot"},
     {name: "Data Science", value: "ds"},
     {name: "Cyber Security", value: "cs"},
-    {name: "Blockchain Engineering", value: "blockchain"}
+    {name: "Blockchain Engineering", value: "blockchain"},
+    {name: "Others", value: "others"}
 ]
 
 const defaultImage = "https://ih1.redbubble.net/image.1046392278.3346/pp,840x830-pad,1000x1000,f8f8f8.jpg"
@@ -90,11 +91,11 @@ useEffect(() => {
                   <form class="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
                       <div>
                           <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Email</label>
-                          <input type="text" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="myemail@localhost.com" value={email} onChange={e => setEmail(e.target.value)} required/>
+                          <input type="text" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="youremail@anydomain.com" value={email} onChange={e => setEmail(e.target.value)} required/>
                       </div>
                       <div>
                           <label for="firstName" class="block mb-2 text-sm font-medium text-gray-900">Title</label>
-                          <input type="text" name="firstName" id="firstName" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="" value={title} onChange={e => setTitle(e.target.value)}/>
+                          <input type="text" name="firstName" id="firstName" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Dr." value={title} onChange={e => setTitle(e.target.value)}/>
                       </div>
                       <div>
                           <label for="firstName" class="block mb-2 text-sm font-medium text-gray-900">First Name</label>
@@ -106,7 +107,7 @@ useEffect(() => {
                       </div>
                       <div>
                           <label for="otherName" class="block mb-2 text-sm font-medium text-gray-900 ">Other Name(s)</label>
-                          <input type="text" name="otherName" id="otherName" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Prince" value={otherNames} onChange={e => setOtherNames(e.target.value)}/>
+                          <input type="text" name="otherName" id="otherName" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="" value={otherNames} onChange={e => setOtherNames(e.target.value)}/>
                       </div>
                       <div>
                           <label for="qualifications" class="block mb-2 text-sm font-medium text-gray-900">Qualifications</label>
