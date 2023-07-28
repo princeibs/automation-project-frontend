@@ -116,7 +116,7 @@ const Recommended = ({showSearch, topics, copy, save, unSave, saved, loading}) =
     return (<>
         {!loading ? (
             <div className='px-3'>
-            <div className='text-4xl mx-auto mb-[1rem] w-fit'>Recommended</div>
+            <div className='text-4xl mx-auto mb-[1rem] w-fit'>Recommended ({topics?.length})</div>
             <p className='mx-auto mb-[2rem] w-fit text-center'>Below is a list of recommended topics based on your description</p>
             <div className='m-auto w-fit flex gap-3 flex-col'>
               {topics.map(topic => (

@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { useCookies } from 'react-cookie';
 import { useGetUserId } from '../hooks/useGetUserId';
-import PenIcon from "../components/icons/PenIcon"
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { baseUrl } from '../config';

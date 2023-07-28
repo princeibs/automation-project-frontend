@@ -27,7 +27,7 @@ const StaffLogin = () => {
             setCookies("access_token", resp.data.token);
             window.localStorage.setItem("userId", resp.data.userId);
             window.localStorage.setItem("role", resp.data.role);
-            navigate("/");
+            navigate("/staff/profile");
             toast.success("Login successful!");
         } else {
             toast.error("Failed to log in");
@@ -59,7 +59,7 @@ const StaffLogin = () => {
                     <form class="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
                         <div>
                             <label for="matricNo" class="block mb-2 text-sm font-medium text-gray-900">Email</label>
-                            <input type="text" name="matricNo" id="matricNo" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " placeholder="myemail@localhost.com" onChange={e => setEmail(e.target.value)} required/>
+                            <input type="text" name="matricNo" id="matricNo" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " placeholder="ibrahim@kasu.edu.ng" onChange={e => setEmail(e.target.value)} required/>
                         </div>
                         <div>
                             <label for="password" class="block mb-2 text-sm font-medium text-gray-900 ">Password</label>
