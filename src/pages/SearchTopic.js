@@ -238,6 +238,7 @@ const SearchTopic = () => {
     }
 
     const handleSearch = async (e, areaOfSpecialization, levelOfExpertise, programmingLanguages, searchType) => {
+        e.preventDefault();
         if (searchType == "narrow") {
           if (!areaOfSpecialization) {
             toast.warn("To perform a Narrow Search, you must select area of specialization")
@@ -253,7 +254,6 @@ const SearchTopic = () => {
           }
         }
         try {
-            e.preventDefault();
             setLoading(true);
             const recommended = await axios.get(`${baseUrl}/auth/search`, {
               headers: {

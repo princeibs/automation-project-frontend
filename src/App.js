@@ -11,6 +11,8 @@ import { useGetUserId } from './hooks/useGetUserId';
 import axios from 'axios';
 import { baseUrl } from './config';
 import Loader from './components/Loader';
+import StaffTopics from './pages/StaffTopics';
+import StaffStudents from './pages/StaffStudents';
 
 
 export default function App() {
@@ -74,13 +76,15 @@ useEffect(() => {
             <Route path='/staff/login' element={<StaffLogin/>}/>
             <Route path='/staff/profile' element={<StaffProfile/>}/>
             <Route path='/staff/add' element={<AddTopic/>}/>
+            <Route path='/staff/topics' element={<StaffTopics/>}/>
+            <Route path='/staff/students' element={<StaffStudents/>}/>
           </Routes>
         </Router>
       ) : (
         <Loader/>
       )}
       <ToastContainer position='bottom-center' />
-      <Footer/>
+      {/* <Footer/> */}
     </div>
   )
 }

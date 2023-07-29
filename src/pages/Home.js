@@ -30,8 +30,8 @@ const Home = () => {
             {role == 1 ? (
               <>
                 <Link to={"/staff/add"}><div className='w-[26rem] sm:w-[20rem] flex justify-center items-center h-[5rem] mt-[2rem] text-white bg-primary-800 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center'>Add topic</div></Link>
-                {/* <Link to={"/"}><div className='w-[26rem] sm:w-[20rem] flex justify-center items-center h-[5rem] mt-[2rem] text-white bg-yellow-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center'>View Topics</div></Link>
-                <Link to={"/"}><div className='w-[26rem] sm:w-[20rem] flex justify-center items-center h-[5rem] mt-[2rem] text-white bg-green-800 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center'>View Students</div></Link> */}
+                <Link to={"/staff/topics"}><div className='w-[26rem] sm:w-[20rem] flex justify-center items-center h-[5rem] mt-[2rem] text-white bg-yellow-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center'>View Topics</div></Link>
+                <Link to={"/staff/students"}><div className='w-[26rem] sm:w-[20rem] flex justify-center items-center h-[5rem] mt-[2rem] text-white bg-green-800 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center'>View Students</div></Link>
                 <Link to={"/staff/profile"}><div className='w-[26rem] sm:w-[20rem] flex justify-center items-center h-[5rem] mt-[2rem] text-white bg-orange-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center'>View profile</div></Link>
               </>
             ): role == 2? (
