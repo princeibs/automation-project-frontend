@@ -8,6 +8,7 @@ import StarIconFull from '../components/icons/StarIconFull';
 import { toast } from 'react-toastify';
 import { useCookies } from 'react-cookie';
 import Loader from '../components/Loader';
+import { Link } from 'react-router-dom';
 
 // List of possible area of specialization
 const tools = [
@@ -136,7 +137,6 @@ const Recommended = ({showSearch, topics, copy, save, unSave, saved, loading, se
         {!loading ? (
             <div className='px-3'>
             <div className='text-4xl mx-auto mb-[1rem] w-fit text-center'>Recommended Topics ({topics?.length})</div>
-            {/* <p className='mx-auto mb-[2rem] w-fit text-center'>Below is a list of recommended topics based on your description</p> */}
             {searchType == "narrow" && (
               <div className='mx-auto mb-[2rem] text-green-900 text-sm'>
                 <p className='text-base font-bold'>Topics must meet ALL of the following criteria:</p>
@@ -153,6 +153,7 @@ const Recommended = ({showSearch, topics, copy, save, unSave, saved, loading, se
                 <p>3. It is {specialization.toString().toUpperCase() || "_"} based.</p>
               </div> 
             )}
+            {/* Topics */}
             <div className='m-auto w-fit flex gap-3 flex-col'>
               {topics.length == 0 && (
                   <div className='underline my-4'>The criteria above did not match any topic in the database</div>
@@ -161,7 +162,9 @@ const Recommended = ({showSearch, topics, copy, save, unSave, saved, loading, se
                 {topics.map(topic => (
                   <div className='border rounded p-4 w-[50rem] sm:w-full bg-yellow-50'>
                     <div className='flex justify-between items-start mb-5 mt-2 mr-2'>
+                      {/* Title */}
                       <div className='text-xl '>{topic.title}</div>
+                      {/* Actions */}
                       <div className='flex items-center justify-between gap-3'>
                         {saved.includes(topic._id) ? 
                           <StarIconFull onClick={() => unSave(topic._id)}/> : 
@@ -170,22 +173,32 @@ const Recommended = ({showSearch, topics, copy, save, unSave, saved, loading, se
                         <CopyIcon onClick={async () => await copy(`${topic.title}\n\n${topic.description}`).then(() => toast.success("Copied to clipboard"))}/>
                       </div>
                     </div>
+                    {/* Description */}
                     <div className='mb-8'>{topic.description}</div>
-                    <div className='flex gap-4'>
-                        <div className='flex flex-wrap gap-2'>
-                          {topic?.categories?.toString().split(",").map(catg => (
-                            <div className='border border-primary-500 rounded-md h-fit px-2 py-1'>{catg}</div>
-                          ))}
-                        </div>
-                        {"|"}
-                        <div className='border border-orange-300 rounded-md h-fit w-fit px-2 py-1'>{topic.expertise}</div>
-                        {"|"}
-                        <div className='flex flex-wrap gap-2'>
-                          {topic.tools.toString().split(",").map(lang => (
-                            <div className='border border-teal-500 rounded-md px-2 py-1'>{lang}</div>
-                          ))}
-                        </div>
+                    {/* Topic Info */}
+                    <div className='flex justify-between items-center flex-wrap'>
+                      <div className='flex gap-4'>
+                          <div className='flex flex-wrap gap-2'>
+                            {topic?.categories?.toString().split(",").map(catg => (
+                              <div className='border border-primary-500 rounded-md h-fit px-2 py-1'>{catg}</div>
+                            ))}
+                          </div>
+                          {"|"}
+                          <div className='border border-orange-300 rounded-md h-fit w-fit px-2 py-1'>{topic.expertise}</div>
+                          {"|"}
+                          <div className='flex flex-wrap gap-2'>
+                            {topic.tools.toString().split(",").map(lang => (
+                              <div className='border border-teal-500 rounded-md px-2 py-1'>{lang}</div>
+                            ))}
+                          </div>
                       </div>
+                      <Link to={`/staff-details/${topic.createdBy._id}`}>
+                        <div className='flex gap-3 items-center justify-center'>
+                          <img className='h-[30px] w-[30px] rounded-full' src={topic.createdBy.image}/>
+                          {topic.createdBy.title} {topic.createdBy.firstName} {topic.createdBy.lastName}
+                        </div>
+                      </Link>
+                    </div>
                   </div>
                 ))}
               </>)}

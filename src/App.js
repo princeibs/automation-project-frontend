@@ -13,6 +13,7 @@ import { baseUrl } from './config';
 import Loader from './components/Loader';
 import StaffTopics from './pages/StaffTopics';
 import StaffStudents from './pages/StaffStudents';
+import StaffDetails from './pages/StaffDetails';
 
 
 export default function App() {
@@ -70,6 +71,7 @@ useEffect(() => {
             <Route path='/register' element={<Register/>}/>
             <Route path='/search' element={<SearchTopic/>}/>
             <Route path='/saved' element={<SavedTopics/>}/>
+            <Route path='/staff-details/:id' element={<StaffDetails/>}/>
 
             {/* Staff */}
             <Route path='/staff/register' element={<StaffRegister/>}/>
