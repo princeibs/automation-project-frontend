@@ -145,6 +145,9 @@ const StaffProfile = () => {
                           ))
                         }</div>
                   </div>
+                  <div className='flex'>
+                      <div className='mr-4'>Published papers:</div><div className='text-black border px-2 py-1 border-slate-300 rounded'></div>
+                  </div>
               </div>
           </div>
 
