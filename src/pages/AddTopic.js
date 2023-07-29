@@ -96,7 +96,9 @@ const AddTopic = () => {
     }
   return (
     <div className='w-[50rem] sm:w-full sm:px-4 mt-8 min-h-screen'>
-        <p className='text-3xl my-2'>Add new topic to your profile</p>
+          <p className='text-3xl text-center my-2'>Add Topic</p>
+          <p className='text-center text-sm'>Add a new topic to the database</p>
+          <hr className='w-[20rem] sm:w-[6rem] mb-8 mx-auto'/>
         <form className='mt-8' onSubmit={handleSubmit}>
         <div class="mb-6"> 
             <label for="title" class="mb-2 font-semibold text-gray-900">Title</label>
