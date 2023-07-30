@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import {HashRouter as Router, Routes, Route} from "react-router-dom";
-import { Home, SearchTopic, SupervisorTopic, AddTopic } from './pages';
+import { Home, SearchTopic, SupervisorTopic, AddTopic, StaffTopics, StaffStudents, StaffDetails, StaffUpdateProfile } from './pages';
 import {Register, Login, Admin, StaffLogin, StaffRegister, StaffProfile} from "./pages/auth"
 import Navbar from "./components/Navbar"
 import Footer from './components/Footer';
@@ -11,9 +11,6 @@ import { useGetUserId } from './hooks/useGetUserId';
 import axios from 'axios';
 import { baseUrl } from './config';
 import Loader from './components/Loader';
-import StaffTopics from './pages/StaffTopics';
-import StaffStudents from './pages/StaffStudents';
-import StaffDetails from './pages/StaffDetails';
 
 
 export default function App() {
@@ -80,6 +77,7 @@ useEffect(() => {
             <Route path='/staff/add' element={<AddTopic/>}/>
             <Route path='/staff/topics' element={<StaffTopics/>}/>
             <Route path='/staff/students' element={<StaffStudents/>}/>
+            <Route path='/staff/update-profile' element={<StaffUpdateProfile/>}/>
           </Routes>
         </Router>
       ) : (

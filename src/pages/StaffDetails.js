@@ -130,6 +130,7 @@ const StaffDetails = () => {
                                     Published papers
                                 </th>
                                 <td class="px-6 py-4 w-[70%] bg-white text">
+                                    {userDetails.publishedDocuments}
                                 </td>
                             </tr>
                         </tbody>

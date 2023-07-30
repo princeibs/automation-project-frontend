@@ -163,15 +163,20 @@ const StaffProfile = () => {
                         </tr>
                         <tr class="border-b border-gray-700">
                             <th scope="row" class="px-6 py-4 w-[30%] font-medium whitespace-nowrap text-white bg-gray-600">
-                                Published papers
+                                Published Articles
                             </th>
                             <td class="px-6 py-4 w-[70%] bg-white text">
+                                {userDetails.publishedDocuments}
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            <button type="button" class="px-6 py-3.5 text-base font-medium text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-center">Update profile</button>
+            <Link to="/staff/update-profile">
+                <button type="button" class="px-6 py-3.5 text-base font-medium text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-center">
+                    Update Profile
+                </button>
+            </Link>
           </div> 
         </div>
     ):(
