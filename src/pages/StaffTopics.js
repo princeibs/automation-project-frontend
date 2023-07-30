@@ -49,10 +49,10 @@ const StaffTopics = () => {
     {
       !loading? (
         <div className='flex flex-col justify-start items-center w-[70%] sm:w-full'>
-          <p className='text-3xl my-2'>Topics</p>
+          <p className='text-3xl my-2'>Topics ({topics.length})</p>
           <p className='text-center text-sm'>List of topics you have added to the database</p>
           <hr className='w-[30rem] sm:w-[6rem] mb-8'/>
-          <div className='flex flex-col gap-4 sm:px-4 mb-8'>
+          <div className='flex flex-col items-center gap-4 sm:px-4 mb-8'>
               {topics?.map(topic => (
                     <div className='border rounded p-4 w-[50rem] sm:w-full bg-yellow-50'>
                     <div className='flex justify-between mb-5 mt-2'>
@@ -62,7 +62,7 @@ const StaffTopics = () => {
                       </div>
                     </div>
                     <div className='mb-8'>{topic.description}</div>
-                    <div className='flex gap-4'>
+                    <div className='flex flex-wrap items-center gap-4'>
                       <div className='flex flex-wrap gap-2'>
                         {topic?.categories?.toString().split(",").map(catg => (
                           <div className='border border-primary-500 rounded-md h-fit px-2 py-1'>{catg}</div>
@@ -76,6 +76,7 @@ const StaffTopics = () => {
                           <div className='border border-teal-500 rounded-md px-2 py-1'>{lang}</div>
                         ))}
                       </div>
+                      <div className='text-xs font-mono ml-auto'>{(new Date(topic.createdAt).toLocaleString())}</div>
                     </div>
                   </div>
               ))}
