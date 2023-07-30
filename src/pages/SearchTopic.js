@@ -8,7 +8,7 @@ import StarIconFull from '../components/icons/StarIconFull';
 import { toast } from 'react-toastify';
 import { useCookies } from 'react-cookie';
 import Loader from '../components/Loader';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 // List of possible area of specialization
 const tools = [
@@ -132,7 +132,7 @@ const Search = ({handleSearch, loading}) => {
   )
 }
 
-const Recommended = ({showSearch, topics, copy, save, unSave, saved, loading, searchType, expertise, tools, specialization}) => {
+const Recommended = ({showSearch, topics, copy, save, unSave, saved, selectTopic, details, loading, searchType, expertise, tools, specialization}) => {
     return (<>
         {!loading ? (
             <div className='px-3'>
@@ -165,13 +165,14 @@ const Recommended = ({showSearch, topics, copy, save, unSave, saved, loading, se
                       {/* Title */}
                       <div className='text-xl '>{topic.title}</div>
                       {/* Actions */}
-                      <div className='flex items-center justify-between gap-3'>
+                      {/* <div className='flex items-center justify-between gap-3'>
                         {saved.includes(topic._id) ? 
                           <StarIconFull onClick={() => unSave(topic._id)}/> : 
                           <StarIcon onClick={() => save(topic._id)}/> 
                         }
                         <CopyIcon onClick={async () => await copy(`${topic.title}\n\n${topic.description}`).then(() => toast.success("Copied to clipboard"))}/>
-                      </div>
+                      </div> */}
+                      <button disabled={details.selectedTopic} onClick={() => selectTopic(topic._id, topic.createdBy._id)} type="button" class="focus:outline-none text-white bg-green-700 disabled:bg-gray-200 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">Select Topic</button>
                     </div>
                     {/* Description */}
                     <div className='mb-8'>{topic.description}</div>
@@ -193,7 +194,7 @@ const Recommended = ({showSearch, topics, copy, save, unSave, saved, loading, se
                           </div>
                       </div>
                       <Link to={`/staff-details/${topic.createdBy._id}`}>
-                        <div className='flex gap-3 items-center justify-center'>
+                        <div className='flex gap-3 items-center justify-center hover:underline'>
                           <img className='h-[30px] w-[30px] rounded-full' src={topic.createdBy.image}/>
                           {topic.createdBy.title} {topic.createdBy.firstName} {topic.createdBy.lastName}
                         </div>
@@ -224,9 +225,12 @@ const SearchTopic = () => {
     const [expertise, setExpertise] = useState("")
     const [tools, setTools] = useState([])
     const [specialization, setSpecialization] = useState("")
+    const [studentDetails, setStudentDetails] = useState({})
 
     const userId = useGetUserId();
     const [cookies, _] = useCookies(["access_token"]);
+    
+    const navigate = useNavigate()
 
     const copyTextToClipboard = async (text) => {
       if ('clipboard' in navigator) {
@@ -320,9 +324,34 @@ const SearchTopic = () => {
         }
     }
 
+    const getStudentDetails = async () => {
+      try {
+        const res = await axios.get(`${baseUrl}/auth/details`, {headers: {authorization: cookies.access_token, id: userId}})
+        setStudentDetails(res.data)
+      } catch (e) {
+        toast.error(e?.message)
+        console.log(e)
+      }
+    }
+
+    const select = async (topicId, topicCreator) => {
+      try {
+        const res = await axios.post(`${baseUrl}/auth/select-topic`, {userId, topicId, topicCreator}, {
+          headers: {
+            authorization: cookies.access_token
+          }
+        });
+        await getStudentDetails();
+        navigate("/supervisor-topic")
+        toast.success("Selected topic successfully")
+      } catch (e) {
+         console.log(e) 
+      }
+  }
+
     useEffect(() => {
-        if (userId) saved()
-    }, [savedTopics])
+        if (userId) getStudentDetails()
+    }, [])
 
     return (
         <>
@@ -336,6 +365,8 @@ const SearchTopic = () => {
                                 save={save} 
                                 unSave={unSave} 
                                 saved={savedTopics} 
+                                selectTopic={select}
+                                details={studentDetails}
                                 loading={loading}
                                 searchType={searchType}
                                 expertise={expertise}

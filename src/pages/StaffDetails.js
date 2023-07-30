@@ -19,6 +19,8 @@ const aos = [
     {name: "Others", value: "others"}
   ]
 
+  const MAX_STUDENT_TO_SUPERVISE = 5
+
 const StaffDetails = () => {
 
     const {id} = useParams()
@@ -31,7 +33,6 @@ const StaffDetails = () => {
           setLoading(true)
           const res = await axios.get(`${baseUrl}/auth/staff-details/${id}`);
           setStaffDetails(res.data)
-          console.log(res.data)
         } catch (e) {
           toast.error(e?.message)
           console.log(e)
@@ -60,7 +61,7 @@ const StaffDetails = () => {
                       <img className='rounded-full w-[20rem] h-[20rem] object-fit border-4 border-primary-300' src={userDetails.image}/>
                   </div>
                 <div class="shadow-md mb-8">
-                    <table class="w-full text-sm text-left text-black">
+                    <table class="w-full text-sm text-left text-black mb-12">
                         <tbody>
                             <tr class="border-b border-gray-700">
                                 <th scope="row" class="px-6 py-4 w-[30%] font-medium whitespace-nowrap text-white bg-gray-600">
@@ -129,6 +130,27 @@ const StaffDetails = () => {
                                     Published papers
                                 </th>
                                 <td class="px-6 py-4 w-[70%] bg-white text">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <table class="w-full text-sm text-left text-black">
+                        <tbody>
+                            <tr class="border-b border-gray-700">
+                                <th scope="row" class="px-6 py-4 w-[70%] font-medium whitespace-nowrap text-white bg-gray-600">
+                                    No. of Students under supervision
+                                </th>
+                                <td class="px-6 py-4 w-[30%] bg-white text">
+                                    {userDetails.slotsOccupied}
+                                </td>
+                            </tr>
+                            <tr class="border-b border-gray-700">
+                                <th scope="row" class="px-6 py-4 w-[70%] font-medium whitespace-nowrap text-white bg-gray-600">
+                                    Slots available for project students
+                                </th>
+                                <td class="px-6 py-4 w-[30%] bg-white text">
+                                    {MAX_STUDENT_TO_SUPERVISE - userDetails.slotsOccupied}
                                 </td>
                             </tr>
                         </tbody>

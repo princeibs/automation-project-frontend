@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import {HashRouter as Router, Routes, Route} from "react-router-dom";
-import { Home, SearchTopic, SavedTopics, AddTopic } from './pages';
+import { Home, SearchTopic, SupervisorTopic, AddTopic } from './pages';
 import {Register, Login, Admin, StaffLogin, StaffRegister, StaffProfile} from "./pages/auth"
 import Navbar from "./components/Navbar"
 import Footer from './components/Footer';
@@ -70,7 +70,7 @@ useEffect(() => {
             <Route path='/login' element={<Login/>}/>
             <Route path='/register' element={<Register/>}/>
             <Route path='/search' element={<SearchTopic/>}/>
-            <Route path='/saved' element={<SavedTopics/>}/>
+            <Route path='/supervisor-topic' element={<SupervisorTopic/>}/>
             <Route path='/staff-details/:id' element={<StaffDetails/>}/>
 
             {/* Staff */}

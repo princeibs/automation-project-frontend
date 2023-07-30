@@ -23,7 +23,7 @@ const Navbar = ({userDetails, userId, cookies, role, setCookies, setUserDetails}
         
         {/* Students */}
         {(userDetails.role == 2) && <Link className='bg-primary-100 sm:bg-primary-0 sm:rounded-md sm:px-6 sm:py-2 drop-shadow-[0] sm:drop-shadow' to="/search">Search</Link> }
-        {(userDetails.role == 2) && <Link className='bg-primary-100 sm:bg-primary-0 sm:rounded-md sm:px-6 sm:py-2 drop-shadow-[0] sm:drop-shadow' to="/saved">Saved</Link> }
+        {(userDetails.role == 2) && <Link className='bg-primary-100 sm:bg-primary-0 sm:rounded-md sm:px-6 sm:py-2 drop-shadow-[0] sm:drop-shadow' to="/supervisor-topic">Supervisor/Topic</Link> }
 
         {/* Staff */}
         {(userDetails.role == 1) && <Link className='bg-primary-100 sm:bg-primary-0 sm:rounded-md sm:px-6 sm:py-2 drop-shadow-[0] sm:drop-shadow' to="/staff/profile">Profile</Link>}
