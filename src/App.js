@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import {HashRouter as Router, Routes, Route} from "react-router-dom";
-import { Home, SearchTopic, SupervisorTopic, AddTopic, StaffTopics, StaffStudents, StaffDetails, StaffUpdateProfile, AdminLogin, AdminStaffs, AdminStudents } from './pages';
+import { Home, SearchTopic, SupervisorTopic, AddTopic, StaffTopics, StaffStudents, StaffDetails, StaffUpdateProfile, AdminLogin, AdminStaffs, AdminStudents, AdminSupervisorDetails } from './pages';
 import {Register, Login, Admin, StaffLogin, StaffRegister, StaffProfile} from "./pages/auth"
 import Navbar from "./components/Navbar"
 import Footer from './components/Footer';
@@ -68,6 +68,7 @@ useEffect(() => {
             <Route path='/admin/login' element={<AdminLogin/>}/>
             <Route path='/admin/supervisors' element={<AdminStaffs/>}/>
             <Route path='/admin/students' element={<AdminStudents/>}/>
+            <Route path='/admin/supervisor/:id' element={<AdminSupervisorDetails/>}/>
 
             {/* Student */}
             <Route path='/login' element={<Login/>}/>

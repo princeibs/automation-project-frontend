@@ -48,7 +48,7 @@ const AdminStudents = () => {
     {
       !loading? (
         <div className='flex flex-col justify-start items-center w-[70%] sm:w-full'>
-          <p className='text-3xl my-2'>Project Student(s) ({students.length})</p>
+          <p className='text-3xl my-2'>Project Student ({students.length})</p>
           <p className='text-center text-sm'>All registered project students</p>
           <hr className='w-[30rem] sm:w-[6rem] mb-8'/>
           {students.length ? (
@@ -61,7 +61,7 @@ const AdminStudents = () => {
                             Full Name
                          </th>
                          <td class="px-6 py-4 w-[70%] bg-white text">
-                            {student.lastName} {student.firstName} {student.otherNames}
+                            {String(student.lastName).toUpperCase()} {student.firstName} {student.otherNames}
                          </td>
                      </tr>
                      <tr class="border-b border-gray-700">
@@ -101,7 +101,7 @@ const AdminStudents = () => {
               ))}
           </div>
           ) : 
-          (<div className='text-2xl'>No student assigned to you yet</div>)}
+          (<div className='text-2xl'>Cannot find any registered student</div>)}
         </div>
     ):(
       <Loader/>
