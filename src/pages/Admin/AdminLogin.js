@@ -7,8 +7,8 @@ import { baseUrl } from '../../config'
 import { toast } from 'react-toastify';
 import { useGetUserId } from '../../hooks/useGetUserId'
 
-const StaffLogin = () => {
-    const [email, setEmail] = useState("")
+const AdminLogin = () => {
+    const [username, setUsername] = useState("")
     const [password, setPassword] = useState("");
     const [cookies, setCookies] = useCookies(["access_token"]);
     const [loading, setLoading] = useState(false)
@@ -20,14 +20,14 @@ const StaffLogin = () => {
       e.preventDefault();
       setLoading(true)
       try {
-        const resp = await axios.post(`${baseUrl}/staff/login`, {
-          email: String(email).toLowerCase(), password
+        const resp = await axios.post(`${baseUrl}/admin/login`, {
+          username, password
         });
         if (resp.status == 200) {
             setCookies("access_token", resp.data.token);
             window.localStorage.setItem("userId", resp.data.userId);
             window.localStorage.setItem("role", resp.data.role);
-            navigate("/staff/profile");
+            navigate("/");
             toast.success("Login successful!");
         } else {
             toast.error("Failed to log in");
@@ -53,13 +53,12 @@ const StaffLogin = () => {
             <div class="w-full bg-white rounded-lg shadow">
                 <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                     <p class="text-xl font-bold text-gray-900 md:text-2xl">
-                        Log in (Staff)
+                        Log in (Admin)
                     </p>
-                    <p className='text-sm'>Log in to start adding topics to the database</p>
                     <form class="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
                         <div>
-                            <label for="matricNo" class="block mb-2 text-sm font-medium text-gray-900">Email</label>
-                            <input type="text" name="matricNo" id="matricNo" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " placeholder="ibrahim@kasu.edu.ng" onChange={e => setEmail(e.target.value)} required/>
+                            <label for="matricNo" class="block mb-2 text-sm font-medium text-gray-900">Username</label>
+                            <input type="text" name="matricNo" id="matricNo" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " placeholder="admin" onChange={e => setUsername(e.target.value)} required/>
                         </div>
                         <div>
                             <label for="password" class="block mb-2 text-sm font-medium text-gray-900 ">Password</label>
@@ -73,12 +72,6 @@ const StaffLogin = () => {
                             :""}
                             {loading  ? "Log in..." : "Log in"}
                         </button>
-                        <p class="text-sm font-light text-gray-500">
-                            Dont have an account? <a href="#" class="font-medium text-primary-600 hover:underline"><Link to="/staff/register">Register here</Link></a>
-                        </p>
-                        <p class="text-sm font-light text-black">
-                           Not a staff? <a href="#" class="font-medium text-primary-600 hover:underline"><Link to="/login">Login as student</Link></a>
-                        </p>
                     </form>
                 </div>
             </div>
@@ -86,4 +79,4 @@ const StaffLogin = () => {
     )
 }
 
-export default StaffLogin
+export default AdminLogin

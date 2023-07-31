@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import {HashRouter as Router, Routes, Route} from "react-router-dom";
-import { Home, SearchTopic, SupervisorTopic, AddTopic, StaffTopics, StaffStudents, StaffDetails, StaffUpdateProfile } from './pages';
+import { Home, SearchTopic, SupervisorTopic, AddTopic, StaffTopics, StaffStudents, StaffDetails, StaffUpdateProfile, AdminLogin, AdminStaffs, AdminStudents } from './pages';
 import {Register, Login, Admin, StaffLogin, StaffRegister, StaffProfile} from "./pages/auth"
 import Navbar from "./components/Navbar"
 import Footer from './components/Footer';
@@ -26,7 +26,8 @@ const getUserDetails = async () => {
     setLoading(true)
     const res = 
       role==1 ? await axios.get(`${baseUrl}/staff/details`, {headers: {authorization: cookies.access_token, id: userId}}) : 
-      role==2 ? await axios.get(`${baseUrl}/auth/details`, {headers: {authorization: cookies.access_token, id: userId}}): ""
+      role==2 ? await axios.get(`${baseUrl}/auth/details`, {headers: {authorization: cookies.access_token, id: userId}}): 
+      role==0 ? await axios.get(`${baseUrl}/admin/details`, {headers: {authorization: cookies.access_token, id: userId}}): ""
     setUserDetails(res.data)
   } catch (e) {
     if (e?.response?.status == 404) {
@@ -62,6 +63,11 @@ useEffect(() => {
           <Routes>
             {/* Shared  */}
             <Route path='/' element={<Home/>}/>
+
+            {/* Admin */}
+            <Route path='/admin/login' element={<AdminLogin/>}/>
+            <Route path='/admin/supervisors' element={<AdminStaffs/>}/>
+            <Route path='/admin/students' element={<AdminStudents/>}/>
 
             {/* Student */}
             <Route path='/login' element={<Login/>}/>

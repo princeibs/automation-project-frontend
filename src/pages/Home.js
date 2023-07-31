@@ -38,7 +38,12 @@ const Home = () => {
             <>
               <Link to={"/search"}><div className='w-[26rem] sm:w-[20rem] flex justify-center items-center h-[5rem] mt-[2rem] text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center'>Search topic</div></Link>
               <Link to={"/supervisor-topic"}><div className='w-[26rem] sm:w-[20rem] flex justify-center items-center h-[5rem] mt-[2rem] text-white bg-yellow-600 hover:bg-yellow-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center'>View Supervisor/Topic</div></Link>
-            </>) : <></>}
+            </>) : role == 0 ? (
+              <>
+                <Link to={"/admin/supervisors"}><div className='w-[26rem] sm:w-[20rem] flex justify-center items-center h-[5rem] mt-[2rem] text-white bg-primary-800 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center'>View Supervisors</div></Link>
+                <Link to={"/admin/students"}><div className='w-[26rem] sm:w-[20rem] flex justify-center items-center h-[5rem] mt-[2rem] text-white bg-yellow-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center'>View Project Students</div></Link>
+              </>
+            ) : <></>}
           </>
         ) : (
           <>

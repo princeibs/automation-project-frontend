@@ -6,3 +6,6 @@ export {default as StaffDetails} from "./StaffDetails";
 export {default as StaffTopics} from "./StaffTopics";
 export {default as StaffStudents} from "./StaffStudents";
 export {default as StaffUpdateProfile} from "./StaffUpdateProfile"
+export {default as AdminLogin} from "./Admin/AdminLogin"
+export {default as AdminStaffs} from "./Admin/AdminStaffs"
+export {default as AdminStudents} from "./Admin/AdminStudents"
