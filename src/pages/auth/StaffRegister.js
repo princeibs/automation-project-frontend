@@ -15,7 +15,7 @@ const aos = [
     {name: "Internet of Things (IOT)", value: "iot"},
     {name: "Data Science", value: "ds"},
     {name: "Cyber Security", value: "cs"},
-    {name: "Blockchain Engineering", value: "blockchain"},
+    {name: "Blockchain", value: "blockchain"},
     {name: "Others", value: "others"}
 ]
 

@@ -54,12 +54,42 @@ const StaffStudents = () => {
           {students.length ? (
             <div className='flex flex-col items-center gap-4 mb-8'>
               {students.map(student => (
-                <div className='border rounded p-4 w-[50rem] sm:w-full bg-white'>
-                  <p className='text-gray-500'>Full Name: <span className='font-mono text-black'>{student.lastName} {student.firstName} {student.otherNames}</span></p>
-                  <p className='text-gray-500'>Matric Number: <span className='font-mono text-black'>{String(student.matricNo).toUpperCase()}</span></p>
-                  <p className='text-gray-500'>Topic title: <span className='font-mono text-black'>{student.title}</span></p>
-                  <p className='text-gray-500'>Topic Description: <span className='font-mono text-black'>{student.description}</span></p>
-                </div>
+                 <table class="w-full text-sm text-left text-black">
+                 <tbody>
+                     <tr class="border-b border-gray-700">
+                         <th scope="row" class="px-6 py-4 w-[30%] font-medium whitespace-nowrap text-white bg-gray-600">
+                            Full Name
+                         </th>
+                         <td class="px-6 py-4 w-[70%] bg-white text">
+                            {student.lastName} {student.firstName} {student.otherNames}
+                         </td>
+                     </tr>
+                     <tr class="border-b border-gray-700">
+                         <th scope="row" class="px-6 py-4 w-[30%] font-medium whitespace-nowrap text-white bg-gray-600">
+                            Matric Number
+                         </th>
+                         <td class="px-6 py-4 w-[70%] bg-white text">
+                          {String(student.matricNo).toUpperCase()}
+                         </td>
+                     </tr>
+                     <tr class="border-b border-gray-700">
+                         <th scope="row" class="px-6 py-4 w-[30%] font-medium whitespace-nowrap text-white bg-gray-600">
+                            Topic title
+                         </th>
+                         <td class="px-6 py-4 w-[70%] bg-white text">
+                            {student.title}
+                         </td>
+                     </tr>
+                     <tr class="border-b border-gray-700">
+                         <th scope="row" class="px-6 py-4 w-[30%] font-medium whitespace-nowrap text-white bg-gray-600">
+                            Topic Description
+                         </th>
+                         <td class="px-6 py-4 w-[70%] bg-white text">
+                            {student.description}
+                         </td>
+                     </tr>
+                 </tbody>
+             </table>
               ))}
           </div>
           ) : 

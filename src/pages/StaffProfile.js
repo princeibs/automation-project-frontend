@@ -16,7 +16,7 @@ const aos = [
   {name: "Machine Learning", value: "ml"},
   {name: "Data Science", value: "ds"},
   {name: "Cyber Security", value: "cs"},
-  {name: "Blockchain Engineering", value: "blockchain"},
+  {name: "Blockchain", value: "blockchain"},
   {name: "Internet of Things", value: "iot"},
   {name: "Others", value: "others"}
 ]
@@ -97,7 +97,7 @@ const StaffProfile = () => {
                   <UploadImage setImage={setNewImage} upload={upload}/>
               </div>
             <div class="shadow-md mb-8">
-                <table class="w-full text-sm text-left text-black">
+                <table class="w-full mb-8 text-sm text-left text-black">
                     <tbody>
                         <tr class="border-b border-gray-700">
                             <th scope="row" class="px-6 py-4 w-[30%] font-medium whitespace-nowrap text-white bg-gray-600">
@@ -167,6 +167,19 @@ const StaffProfile = () => {
                             </th>
                             <td class="px-6 py-4 w-[70%] bg-white text">
                                 {userDetails.publishedDocuments}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <table class="w-full text-sm text-left text-black">
+                    <tbody>
+                        <tr class="border-b border-gray-700">
+                            <th scope="row" class="px-6 py-4 w-[30%] font-medium whitespace-nowrap text-white bg-gray-600">
+                                Last Login
+                            </th>
+                            <td class="px-6 py-4 w-[70%] bg-white text">
+                                {(new Date(userDetails.lastLogin)).toUTCString()}
                             </td>
                         </tr>
                     </tbody>
