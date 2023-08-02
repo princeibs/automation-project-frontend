@@ -1,0 +1,5 @@
+export {default as Login} from "./Login"
+export {default as Register} from "./Register"
+export {default as SearchTopic} from "./SearchTopic"
+export {default as StaffDetails} from "./StaffDetails"
+export {default as SupervisorTopic} from "./SupervisorTopic"

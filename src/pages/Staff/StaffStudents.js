@@ -1,12 +1,11 @@
 import React, {useState, useEffect} from 'react'
 import { useCookies } from 'react-cookie';
-import { useGetUserId } from '../hooks/useGetUserId';
+import { useGetUserId } from '../../hooks/useGetUserId';
 import axios from 'axios';
-import { Link, useNavigate } from 'react-router-dom';
-import { baseUrl } from '../config';
+import { useNavigate } from 'react-router-dom';
+import { baseUrl } from '../../helpers/config';
 import { toast } from 'react-toastify';
-import Loader from '../components/Loader';
-
+import Loader from '../../components/Loader';
 
 const StaffStudents = () => {
     const [cookies, _] = useCookies(["access_token"]);

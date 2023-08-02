@@ -3,7 +3,7 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 import {useCookies} from "react-cookie"
 import { useNavigate } from 'react-router-dom'
-import { baseUrl } from '../../config'
+import { baseUrl } from '../../helpers/config'
 import { toast } from 'react-toastify';
 import { useGetUserId } from '../../hooks/useGetUserId'
 

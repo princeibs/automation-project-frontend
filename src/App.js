@@ -1,15 +1,18 @@
 import React, {useState, useEffect} from 'react'
-import {HashRouter as Router, Routes, Route} from "react-router-dom";
-import { Home, SearchTopic, SupervisorTopic, AddTopic, StaffTopics, StaffStudents, StaffDetails, StaffUpdateProfile, AdminLogin, AdminStaffs, AdminStudents, AdminSupervisorDetails } from './pages';
-import {Register, Login, Admin, StaffLogin, StaffRegister, StaffProfile} from "./pages/auth"
-import Navbar from "./components/Navbar"
-import Footer from './components/Footer';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useCookies } from 'react-cookie';
-import { useGetUserId } from './hooks/useGetUserId';
 import axios from 'axios';
-import { baseUrl } from './config';
+import {HashRouter as Router, Routes, Route} from "react-router-dom";
+
+import {AdminLogin, AdminStaffs, AdminStudents, AdminSupervisorDetails} from "./pages/Admin"
+import {AddTopic, StaffLogin, StaffProfile, StaffRegister, StaffTopics, StaffStudents, StaffUpdateProfile} from "./pages/Staff"
+import { Login, Register, SearchTopic, StaffDetails, SupervisorTopic} from './pages/Student';
+import Home from "./pages/Home"
+import Navbar from "./components/Navbar"
+import Footer from './components/Footer';
+import { useGetUserId } from './hooks/useGetUserId';
+import { baseUrl } from './helpers/config';
 import Loader from './components/Loader';
 
 

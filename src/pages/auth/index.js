@@ -1,6 +1,0 @@
-export {default as Admin} from "./Admin"
-export {default as Login} from "./Login"
-export {default as Register} from "./Register"
-export {default as StaffLogin} from "./StaffLogin"
-export {default as StaffRegister} from "./StaffRegister"
-export {default as StaffProfile} from "../StaffProfile"

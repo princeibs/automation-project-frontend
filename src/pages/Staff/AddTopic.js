@@ -1,33 +1,11 @@
 import React, {useState} from 'react'
 import { useCookies } from 'react-cookie'
-import {useGetUserId} from "../hooks/useGetUserId"
+import {useGetUserId} from "../../hooks/useGetUserId"
 import { useNavigate } from 'react-router-dom'
-import { baseUrl } from '../config'
+import { baseUrl } from '../../helpers/config'
 import axios from 'axios'
 import { toast } from 'react-toastify'
-
-
-// List of possible area of specialization
-const tools = [
-    {name: "Python", value: "python"},
-    {name: "Java", value: "java"},
-    {name: "JavaScript", value: "javascript"},
-    {name: "PHP", value: "php"},
-    {name: "C", value: "c"},
-    {name: "C++", value: "cpp"},
-    {name: "C#", value: "csharp"},
-    {name: "Rust", value: "rust"},
-    {name: "Solidity (Ethereum)", value: "solidity"},
-    {name: "Swift", value: "swift"},
-    {name: "Arduino", value: "arduino"},
-    {name: "TensorFlow", value: "tensorflow"},
-    {name: "Kotlin", value: "kotlin"},
-    {name: "MATLAB", value: "matlab"},
-    {name: "React Native", value: "react-native"},
-    {name: "Unity (C#)", value: "unity-csharp"},
-    {name: "MIDI Libraries", value: "midi-libraries"},
-    {name: "Others", value: "others"},
-]
+import { tools } from '../../helpers/constants'
 
 const AddTopic = () => {
     const [title, setTitle] = useState("");

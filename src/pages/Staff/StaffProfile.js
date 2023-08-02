@@ -1,25 +1,13 @@
 import React, {useState, useEffect} from 'react'
 import { useCookies } from 'react-cookie';
-import { useGetUserId } from '../hooks/useGetUserId';
+import { useGetUserId } from '../../hooks/useGetUserId';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
-import { baseUrl } from '../config';
+import { baseUrl } from '../../helpers/config';
 import { toast } from 'react-toastify';
-import Loader from '../components/Loader';
-import UploadImage from '../components/UploadImage';
-
-// List of possible area of specialization
-const aos = [
-  {name: "Web development", value: "web"},
-  {name: "Mobile App Development", value: "mobile"},
-  {name: "Artificial Intelligence", value: "ai"},
-  {name: "Machine Learning", value: "ml"},
-  {name: "Data Science", value: "ds"},
-  {name: "Cyber Security", value: "cs"},
-  {name: "Blockchain", value: "blockchain"},
-  {name: "Internet of Things", value: "iot"},
-  {name: "Others", value: "others"}
-]
+import Loader from '../../components/Loader';
+import UploadImage from '../../components/UploadImage';
+import { aos } from '../../helpers/constants';
 
 const StaffProfile = () => {
     const [userDetails, setUserDetails] = useState({})
