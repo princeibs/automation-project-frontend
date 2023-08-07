@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
 import {useCookies} from "react-cookie"
 import { useNavigate } from 'react-router-dom'
 import { baseUrl } from '../../helpers/config'
 import { toast } from 'react-toastify';
 import { useGetUserId } from '../../hooks/useGetUserId'
 
+// Admin login page
 const AdminLogin = () => {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("");
